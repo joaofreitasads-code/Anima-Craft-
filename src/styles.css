@@ -1,0 +1,347 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system — Mega Acervo de Moldes Decorativos 3D
+ * Premium, warm, minimal. All colors in oklch.
+ */
+
+@theme inline {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Baloo 2", "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 8px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 12px);
+  --radius-3xl: calc(var(--radius) + 20px);
+  --radius-4xl: calc(var(--radius) + 28px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-highlight: var(--highlight);
+  --color-brown: var(--brown);
+  --color-brown-foreground: var(--brown-foreground);
+  --color-brown-muted: var(--brown-muted);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  --shadow-soft: 0 1px 2px oklch(0.264 0 0 / 4%), 0 8px 24px oklch(0.264 0 0 / 6%);
+  --shadow-lift: 0 2px 4px oklch(0.264 0 0 / 5%), 0 18px 40px oklch(0.264 0 0 / 10%);
+  --shadow-glow: 0 12px 32px oklch(0.806 0.151 78.4 / 35%);
+}
+
+:root {
+  --radius: 1.25rem;
+
+  /* Paleta papel kraft */
+  --kraft-light: #c9955b;
+  --kraft-mid: #a96f38;
+  --kraft-dark: #724727;
+  --cream: #f7ebd5;
+  --cream-light: #fff8ec;
+  --ink: #2e2018;
+
+  --background: #fff8ec;
+  --foreground: #2e2018;
+  --card: #fffdf8;
+  --card-foreground: #2e2018;
+  --popover: #fffdf8;
+  --popover-foreground: #2e2018;
+
+  --primary: #e9852d;
+  --primary-foreground: #fff8ec;
+  --primary-hover: #d1731f;
+
+  --secondary: #f7ebd5;
+  --secondary-foreground: #2e2018;
+  --muted: #f2e6cf;
+  --muted-foreground: #7a6552;
+  --accent: #f5bb45;
+  --accent-foreground: #2e2018;
+  --highlight: #f5bb45;
+  --brown: #33231a;
+  --brown-foreground: #fff8ec;
+  --brown-muted: #d8c3a5;
+
+  --destructive: #b4402c;
+  --destructive-foreground: #fff8ec;
+  --success: #3f8f55;
+
+  --border: #e6d5b8;
+  --input: #e6d5b8;
+  --ring: #e9852d;
+}
+
+.dark {
+  --background: #fff8ec;
+  --foreground: #2e2018;
+  --card: #fffdf8;
+  --card-foreground: #2e2018;
+}
+
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      repeating-linear-gradient(92deg, rgba(114, 71, 39, 0.022) 0 1px, transparent 1px 4px),
+      repeating-linear-gradient(3deg, rgba(114, 71, 39, 0.018) 0 1px, transparent 1px 5px);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility marquee-track {
+  width: max-content;
+  animation: marquee-x 40s linear infinite;
+
+  &:hover,
+  &:active {
+    animation-play-state: paused;
+  }
+}
+
+
+
+@utility marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 6%,
+    black 94%,
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+
+/* ============================================================
+   Identidade visual papercraft / papel kraft
+   ============================================================ */
+
+/* Textura sutil de fibras de papel, gerada em CSS (sem imagens) */
+@utility paper-texture {
+  position: relative;
+  isolation: isolate;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.5;
+    background-image:
+      repeating-linear-gradient(
+        92deg,
+        rgba(114, 71, 39, 0.035) 0 1px,
+        transparent 1px 4px
+      ),
+      repeating-linear-gradient(
+        3deg,
+        rgba(114, 71, 39, 0.03) 0 1px,
+        transparent 1px 5px
+      );
+  }
+}
+
+@utility paper-shadow {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 2px 0 rgba(114, 71, 39, 0.12),
+    0 10px 24px rgba(70, 40, 20, 0.1);
+}
+
+/* Títulos recortados em papel kraft */
+@utility craft-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: #8a572f; /* fallback sólido */
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-wrap: balance;
+  text-shadow:
+    0 2px 0 rgba(255, 255, 255, 0.35),
+    0 5px 8px rgba(70, 40, 20, 0.18);
+
+  @supports (background-clip: text) or (-webkit-background-clip: text) {
+    background-image: linear-gradient(135deg, #d5a66d 0%, #a96f38 45%, #d7aa73 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 2px 0 rgba(255, 255, 255, 0.35))
+      drop-shadow(0 5px 7px rgba(70, 40, 20, 0.2));
+    text-shadow: none;
+  }
+}
+
+/* Variação para fundos escuros (hero marrom) */
+@utility craft-title-light {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: #f7ebd5;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  text-wrap: balance;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.25),
+    0 4px 10px rgba(0, 0, 0, 0.45);
+}
+
+/* Palavras destacadas: etiqueta de papel colada */
+@utility craft-highlight {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #2e2018;
+  background-image: linear-gradient(180deg, #f7c65c 0%, #f5bb45 100%);
+  padding: 0.06em 0.42em;
+  border-radius: 0.35rem 0.55rem 0.4rem 0.6rem;
+  transform: rotate(-0.8deg);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.5) inset,
+    0 2px 5px rgba(70, 40, 20, 0.22);
+}
+
+/* Etiquetas pequenas (kickers, badges) */
+@utility craft-label {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #2e2018;
+  background-image: linear-gradient(180deg, #e2b988 0%, #c9955b 100%);
+  padding: 0.28rem 0.85rem;
+  border-radius: 0.4rem 0.7rem 0.45rem 0.75rem;
+  transform: rotate(0.7deg);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.45) inset,
+    0 2px 5px rgba(70, 40, 20, 0.18);
+}
+
+/* Preço dentro de um pedaço de papel kraft */
+@utility craft-price {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: #2e2018;
+  font-size: clamp(2.6rem, 11vw, 3.4rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  padding: 0.18em 0.4em;
+  background-image: linear-gradient(160deg, #f7ebd5 0%, #eeddbe 100%);
+  border-radius: 0.5rem 0.8rem 0.55rem 0.85rem;
+  transform: rotate(-0.6deg);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 2px 0 rgba(114, 71, 39, 0.15),
+    0 6px 14px rgba(70, 40, 20, 0.14);
+}
+
+/* Cards com aparência de folha de papel sobreposta */
+@utility craft-card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 2px 0 rgba(114, 71, 39, 0.1),
+    0 12px 26px rgba(70, 40, 20, 0.09);
+}
+
+/* Botão com aparência de etiqueta de papel, texto sempre limpo */
+@utility craft-button {
+  font-family: var(--font-sans);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.35) inset,
+    0 3px 0 rgba(114, 71, 39, 0.35),
+    0 10px 20px rgba(233, 133, 45, 0.28);
+
+  &:active {
+    transform: translateY(2px);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.3) inset,
+      0 1px 0 rgba(114, 71, 39, 0.35),
+      0 6px 12px rgba(233, 133, 45, 0.22);
+  }
+}
